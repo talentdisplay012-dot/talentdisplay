@@ -1,6 +1,91 @@
 ---
 import { siteConfig } from "../config";
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+
+const experiences = [
+  {
+    title: "Google Career Certificates",
+    company: "Google / Coursera",
+    dateRange: "Online",
+    bullets: [
+      "Data Analytics, Project Management, Digital Marketing, IT Support",
+      "Përfundim në 3-6 muaj me sertifikatë të njohur ndërkombëtarisht",
+      "Rrit mundësitë e punësimit deri në 40% sipas Google"
+    ]
+  },
+  {
+    title: "LinkedIn Learning & Certifications",
+    company: "LinkedIn",
+    dateRange: "Fleksibël",
+    bullets: [
+      "Mbi 16,000 kurse në të gjitha fushat profesionale",
+      "Sertifikatat shfaqen drejtpërdrejt në profilin LinkedIn",
+      "Njohja nga punëdhënës në të gjithë botën"
+    ]
+  },
+  {
+    title: "Praktika Profesionale (Internship)",
+    company: "Kompani të ndryshme",
+    dateRange: "3-6 muaj",
+    bullets: [
+      "Përvojë praktike në fushën tuaj të interesit",
+      "Ndërtim i rrjetit profesional (networking)",
+      "Mundësi ta bësh ofertë pune nga kreu në fund të praktikës"
+    ]
+  },
+  {
+    title: "Kurse në Kodim & Teknologji",
+    company: "freeCodeCamp, Udemy, Codecademy",
+    dateRange: "Sipas tempove tuaj",
+    bullets: [
+      "Full Stack Development, React, Python, Web Design",
+      "Projekte praktike të përfunduara për portfolio",
+      "Sertifikatat të përcaktuara me kodin e projektit"
+    ]
+  },
+  {
+    title: "Lidershipi & Komunikimi",
+    company: "Toastmasters, Dale Carnegie",
+    dateRange: "Afatgjatë",
+    bullets: [
+      "Përparim në fjalim publik dhe përsona lidershipi",
+      "Aftësi më të mëdha në intervista dhe negociata",
+      "Vlerë e madhe për pozicione menaxhiale"
+    ]
+  },
+  {
+    title: "Sertifikatat Industriale",
+    company: "AWS, Microsoft, Cisco",
+    dateRange: "Sipas specifikacionit",
+    bullets: [
+      "Cloud Computing (AWS Solutions Architect), Microsoft Azure, Cisco CCNA",
+      "Kërkesa e lartë në treg, paga më e lartë",
+      "Përgatitje përmes kursesh online me ekzamen final"
+    ]
+  },
+  {
+    title: "Vullnetarizmi & Angazhimi Social",
+    company: "Organizata joqeveritare",
+    dateRange: "Vazhdueshëm",
+    bullets: [
+      "Angazhim në komunitet dhe projekte sociale",
+      "Vlerësohet shumë nga punëdhënës progresiv",
+      "Përvojë liderships dhe problem-solving në botën reale"
+    ]
+  },
+  {
+    title: "Prodhim Projektesh Personale",
+    company: "Portfolio Projects",
+    dateRange: "Sipas tempove tuaj",
+    bullets: [
+      "Aplikacione web, mobile apps, startup ide",
+      "Të gjitha projektet në GitHub ose platform publike",
+      "Kolorja më e fortë në CV - shfaq aftësitë praktike"
+    ]
+  }
+];
+
+const hasExperience = experiences && experiences.length > 0;
+const accentColor = siteConfig.accentColor || "#0d47ff";
 ---
 
 {
@@ -10,55 +95,49 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Experience
+              Eksperienca
             </h2>
             <div
-              class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
+              class="w-[75px] h-[5px] mt-2 rounded-full accent-line"
+              style={`background-color: ${accentColor}`}
             />
+            <p class="text-base sm:text-lg text-gray-600 mt-6">
+              Kurse dhe përvojë që ju rrisin mundësitë e punësimit
+            </p>
           </div>
 
           <div class="lg:col-span-8">
-            <div class="relative">
-              {siteConfig.experience.map((exp, index) => (
-                <div class="relative mb-12 last:mb-0">
-                  {/* Timeline dot at top of card */}
+            <div class="experience-timeline">
+              {experiences.map((exp, index) => (
+                <div class="experience-item" data-index={index}>
+                  {/* Timeline dot */}
                   <div
-                    class="absolute left-1/2 -top-2 w-4 h-4 bg-white border-2 rounded-full -translate-x-1/2 z-20 transition-all duration-300"
-                    style={`border-color: ${siteConfig.accentColor}; background-color: ${siteConfig.accentColor}`}
+                    class="timeline-dot"
+                    style={`background-color: ${accentColor}; border-color: ${accentColor}`}
                   />
 
-                  {/* Connecting line below card */}
-                  {index < siteConfig.experience.length - 1 && (
-                    <div class="absolute left-1/2 bottom-0 w-0.5 h-12 bg-gray-300 -translate-x-1/2 translate-y-full z-10" />
+                  {/* Connecting line */}
+                  {index < experiences.length - 1 && (
+                    <div class="timeline-line" style={`background-color: #d1d5db`} />
                   )}
 
                   {/* Experience card */}
-                  <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <div class="experience-card">
+                    <div class="card-header">
                       <div>
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                          {exp.title}
-                        </h3>
-                        <p
-                          class="text-base sm:text-lg"
-                          style={`color: ${siteConfig.accentColor}`}
-                        >
+                        <h3 class="card-title">{exp.title}</h3>
+                        <p class="card-company" style={`color: ${accentColor}`}>
                           {exp.company}
                         </p>
                       </div>
-                      <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                        {exp.dateRange}
-                      </span>
+                      <span class="card-date">{exp.dateRange}</span>
                     </div>
 
-                    <ul class="space-y-2">
+                    <ul class="card-bullets">
                       {exp.bullets.map((bullet) => (
-                        <li class="flex items-start">
-                          <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                          <span class="text-sm sm:text-base text-gray-600">
-                            {bullet}
-                          </span>
+                        <li class="bullet-item">
+                          <span class="bullet-dot" />
+                          <span class="bullet-text">{bullet}</span>
                         </li>
                       ))}
                     </ul>
@@ -72,3 +151,296 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
     </section>
   )
 }
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const experienceCards = document.querySelectorAll('.experience-card');
+    
+    experienceCards.forEach((card, cardIndex) => {
+      card.addEventListener('mouseenter', () => {
+        const item = card.closest('.experience-item');
+        const dot = item.querySelector('.timeline-dot');
+        
+        if (!dot) return;
+        
+        // Get dot position
+        const rect = dot.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        
+        // Create falling ball
+        const fallingBall = document.createElement('div');
+        fallingBall.style.cssText = `
+          position: fixed;
+          left: ${startX}px;
+          top: ${startY}px;
+          width: 16px;
+          height: 16px;
+          background-color: ${dot.style.backgroundColor};
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 1000;
+          box-shadow: 0 0 15px ${dot.style.backgroundColor};
+        `;
+        document.body.appendChild(fallingBall);
+        
+        // Physics animation
+        let currentY = startY;
+        let velocity = 0;
+        const gravity = 0.8;
+        const damping = 0.92; // Bouncing effect
+        let bounceCount = 0;
+        const maxBounces = 3;
+        
+        const fall = () => {
+          velocity += gravity;
+          currentY += velocity;
+          fallingBall.style.top = currentY + 'px';
+          
+          const nextItem = document.querySelector(`[data-index="${cardIndex + 1}"]`);
+          
+          if (nextItem) {
+            const nextDot = nextItem.querySelector('.timeline-dot');
+            if (nextDot) {
+              const nextRect = nextDot.getBoundingClientRect();
+              
+              // Ball reached next dot
+              if (currentY >= nextRect.top - 20 && bounceCount < maxBounces) {
+                velocity *= -damping;
+                currentY = nextRect.top - 20;
+                bounceCount++;
+                
+                // Pulse effect on next dot
+                nextDot.classList.add('pulse-active');
+                setTimeout(() => {
+                  nextDot.classList.remove('pulse-active');
+                }, 600);
+              }
+            }
+          }
+          
+          // Stop after bounces or if off screen
+          if (bounceCount >= maxBounces || currentY > window.innerHeight) {
+            fallingBall.remove();
+            return;
+          }
+          
+          if (Math.abs(velocity) > 0.1 || currentY < window.innerHeight) {
+            requestAnimationFrame(fall);
+          } else {
+            fallingBall.remove();
+          }
+        };
+        
+        // Animate card
+        card.classList.add('card-hover-animate');
+        requestAnimationFrame(fall);
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('card-hover-animate');
+      });
+    });
+  });
+</script>
+
+<style>
+  .accent-line {
+    animation: expandWidth 0.8s ease-out;
+  }
+
+  @keyframes expandWidth {
+    from {
+      width: 0;
+    }
+    to {
+      width: 75px;
+    }
+  }
+
+  .experience-timeline {
+    position: relative;
+  }
+
+  .experience-item {
+    position: relative;
+    margin-bottom: 48px;
+    animation: slideInCard 0.6s ease-out;
+  }
+
+  @keyframes slideInCard {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    transition: all 0.3s ease;
+  }
+
+  .timeline-dot:hover {
+    transform: translateX(-50%) scale(1.4);
+    filter: drop-shadow(0 0 12px rgba(13, 71, 255, 0.6));
+  }
+
+  .timeline-dot.pulse-active {
+    animation: pulseEffect 0.6s ease-out;
+  }
+
+  @keyframes pulseEffect {
+    0% {
+      transform: translateX(-50%) scale(1);
+      filter: drop-shadow(0 0 0 rgba(13, 71, 255, 0.8));
+    }
+    50% {
+      transform: translateX(-50%) scale(1.3);
+      filter: drop-shadow(0 0 15px rgba(13, 71, 255, 0.8));
+    }
+    100% {
+      transform: translateX(-50%) scale(1);
+      filter: drop-shadow(0 0 0 rgba(13, 71, 255, 0.4));
+    }
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    bottom: -48px;
+    width: 2px;
+    height: 48px;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .experience-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f3f4f6;
+    padding: 20px 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .experience-card:hover {
+    box-shadow: 0 4px 12px rgba(13, 71, 255, 0.12);
+    border-color: #e5e9ff;
+    transform: translateY(-2px);
+  }
+
+  .experience-card.card-hover-animate {
+    animation: cardPulse 0.6s ease-out;
+  }
+
+  @keyframes cardPulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(13, 71, 255, 0.2);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 4px 12px rgba(13, 71, 255, 0.12);
+    }
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .card-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+  }
+
+  .card-company {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 4px 0 0 0;
+  }
+
+  .card-date {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+
+  .card-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  .bullet-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #9ca3af;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .bullet-text {
+    flex: 1;
+  }
+
+  @media (max-width: 768px) {
+    .experience-item {
+      margin-bottom: 36px;
+    }
+
+    .card-title {
+      font-size: 16px;
+    }
+
+    .card-bullets {
+      gap: 6px;
+    }
+
+    .bullet-item {
+      font-size: 13px;
+    }
+  }
+</style>
