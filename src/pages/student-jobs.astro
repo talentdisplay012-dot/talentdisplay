@@ -2,79 +2,241 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Student Jobs - Talent Display">
+<Layout title="Punë për Studentë - Talent Display">
   <section class="jobs-section">
-    <h1 class="title">Punë dhe intershipe</h1>
-    <p class="subtitle">Gjej mundësi pune dhe internship për studentë</p>
+    <h1 class="title">🎓 Punë dhe Internshipe</h1>
+    <p class="subtitle">Gjej mundësi pune dhe internship për studentë në Lezhë. <br> Pozicione të preferuara për të rinj, praktikë, dhe karrierë lokale!</p>
 
-    <div class="jobs-grid">
-      <a class="job-card" target="_blank" href="https://www.duapune.com/">DuaPune</a>
-      <a class="job-card" target="_blank" href="https://karriera.al/">Karriera.al</a>
-      <a class="job-card" target="_blank" href="https://njoftime.com/">Njoftime.com</a>
-      <a class="job-card" target="_blank" href="https://studaral.com/">StudArAl</a>
+    <div class="jobs-container">
+      <!-- Internships -->
+      <div class="job-category">
+        <h2 class="category-title">🛠️ Internshipe Aktive</h2>
+        <div class="job-card">
+          <h3 class="job-title">Internship - Inxhinieri Hidroteknik</h3>
+          <p class="company">Institucione Shtetërore, Lezhë</p>
+          <p class="description">Program 3-mujor për studentët e inxhinierisë hidroteknik, me mundësi punësimi për 200 më të mirët.</p>
+          <a class="apply-btn" href="https://www.balkanweb.com/en/praktike-ne-shtet-vendet-e-lira-sipas-ministrive-programi-zgjat-3-muaj-200-me-te-miret-punesohen/" target="_blank">Shiko Detajet</a>
+        </div>
+        <!-- ... More internship cards ... -->
+      </div>
+
+      <!-- Full-Time Jobs -->
+      <div class="job-category">
+        <h2 class="category-title">💼 Punë me Kohë të Plotë</h2>
+        <div class="job-card">
+          <h3 class="job-title">Production Technologist</h3>
+          <p class="company">AZ Group - INCA, Lezhë</p>
+          <p class="description">Pozicion full-time në fabrikën e prodhimit. Kërkohet formim teknik.</p>
+          <a class="apply-btn" href="https://azgroup.al/en/jobs-listing/" target="_blank">Apliko Tani</a>
+        </div>
+        <!-- ... More full-time job cards ... -->
+      </div>
+
+      <!-- Part-Time -->
+      <div class="job-category">
+        <h2 class="category-title">⏰ Punë Part-Time & Fleksibël</h2>
+        <div class="job-card">
+          <h3 class="job-title">Shërbim Klienti - Call Center</h3>
+          <p class="company">Kompani të ndryshme, Lezhë/Online</p>
+          <p class="description">4-6 orë në ditë, ideal për studentë. Orar fleksibël.</p>
+          <a class="apply-btn" href="https://www.gazetacelesi.al/en/pune-part-time" target="_blank">Eksploro</a>
+        </div>
+        <!-- ... More part-time cards ... -->
+      </div>
+
+      <!-- Job Portals -->
+      <div class="job-category">
+        <h2 class="category-title">🔗 Portale Pune për Lezhë</h2>
+        <div class="portals-grid">
+          <a class="portal-card" target="_blank" href="https://duapune.com/search/filter/city?city=Lezh%C3%AB">
+            <span class="portal-name">DuaPune</span>
+            <span class="portal-desc">50+ pozicione aktive</span>
+          </a>
+          <a class="portal-card" target="_blank" href="https://www.duanjoftime.com/vende-te-lira-pune-ne-lezhe-2025/l-en-c-23.html">
+            <span class="portal-name">DuaNjoftime</span>
+            <span class="portal-desc">Të përditësuara 2025</span>
+          </a>
+          <a class="portal-card" target="_blank" href="https://al.linkedin.com/jobs/jobs-in-sh%C3%ABngjin">
+            <span class="portal-name">LinkedIn</span>
+            <span class="portal-desc">9+ në Shëngjin</span>
+          </a>
+          <a class="portal-card" target="_blank" href="https://albaniajobs.al">
+            <span class="portal-name">Albania Jobs</span>
+            <span class="portal-desc">Gateway Karriere</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
   <style>
-  body {
-    background: linear-gradient(to bottom, #eef4ff, #f7faff);
-    min-height: 100vh;
-    margin: 0;
-  }
+    body {
+      background: linear-gradient(to bottom, #eef4ff, #f7faff);
+      min-height: 100vh;
+      margin: 0;
+    }
 
-    /* Background i njëjtë si faqa kryesore */
     .jobs-section {
-      padding: 80px 20px;
+      padding: 80px 20px 40px 20px;
       background: linear-gradient(180deg, #ffffff00, #ebf1ff);
-      text-align: center;
       animation: fadeIn 0.8s ease-in-out;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 32px rgba(30,60,240,0.06);
+      margin-bottom: 35px;
     }
 
     .title {
-      font-size: 40px;
-      font-weight: 800;
+      font-size: 46px;
+      font-weight: 900;
       color: #0d1a2d;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: -1px;
     }
 
     .subtitle {
       font-size: 20px;
-      color: #4a5568;
-      margin-bottom: 40px;
+      color: #34465b;
+      margin-bottom: 50px;
+      text-align: center;
+      line-height: 1.5;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .jobs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      max-width: 900px;
+    .jobs-container {
+      max-width: 1050px;
       margin: 0 auto;
     }
 
-    /* BOX STYLE ME GLOW + ANIMACION */
+    .job-category {
+      margin-bottom: 65px;
+      padding-top: 6px;
+    }
+
+    .category-title {
+      font-size: 27px;
+      font-weight: 800;
+      color: #1552f7;
+      margin-bottom: 30px;
+      padding-left: 19px;
+      border-left: 5px solid #1552f7;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #eef7ff;
+      border-radius: 6px;
+    }
+
     .job-card {
       background: #ffffff;
-      padding: 22px;
+      padding: 30px 28px 22px 28px;
       border-radius: 18px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e8ecff;
-      font-size: 20px;
-      font-weight: 600;
-      color: #0d47ff;
-      transition: 0.25s ease;
-      transform: translateY(0);
+      box-shadow: 0 4px 19px rgba(0, 11, 60, 0.06);
+      border-left: 6px solid #3b80ff;
+      margin-bottom: 23px;
+      transition: box-shadow 0.28s, border-color 0.28s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-
     .job-card:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 10px 25px rgba(0, 72, 255, 0.25);
-      border-color: #4d7cff;
+      box-shadow: 0 10px 27px rgba(0, 72, 255, 0.18);
+      border-color: #0d1a2d;
+      transform: translateY(-4px) scale(1.03);
+      background: #f6faff;
     }
 
-    /* Fade-in animation */
+    .job-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #1552f7;
+      margin-bottom: 9px;
+    }
+
+    .company {
+      font-size: 16px;
+      color: #0d47ff;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      font-size: 16px;
+      color: #38506b;
+      line-height: 1.68;
+      margin-bottom: 20px;
+      margin-top: 6px;
+    }
+
+    .apply-btn {
+      display: inline-block;
+      background: #1552f7;
+      color: #fff;
+      padding: 12px 32px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(21,82,247,0.10);
+      transition: background 0.22s, transform 0.19s;
+      border: none;
+      outline: none;
+    }
+    .apply-btn:hover {
+      background: #0d1a2d;
+      transform: scale(1.06);
+    }
+
+    .portals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 22px;
+      margin-top: 5px;
+    }
+    .portal-card {
+      background: #fff;
+      padding: 27px 18px 19px 18px;
+      border-radius: 15px;
+      box-shadow: 0 2px 16px rgba(9,10,80,0.07);
+      border-bottom: 5px solid #1552f7;
+      text-decoration: none;
+      text-align: center;
+      transition: box-shadow 0.25s, border-bottom 0.2s, transform 0.19s;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .portal-card:hover, .portal-card:focus {
+      box-shadow: 0 10px 32px rgba(8,30,120,0.15);
+      border-bottom: 7px solid #3b80ff;
+      background: #eef7ff;
+      transform: scale(1.06);
+    }
+    .portal-name {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1552f7;
+      margin-bottom: 7px;
+    }
+    .portal-desc {
+      font-size: 14px;
+      color: #34465b;
+      margin-top: 3px;
+    }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 760px) {
+      .title { font-size: 32px; }
+      .subtitle { font-size: 17px; }
+      .jobs-section { padding: 44px 8px 18px 8px; }
+      .job-category { margin-bottom: 44px; }
+      .category-title { font-size: 19px; padding-left: 9px; }
+      .job-card { padding: 18px 6px 15px 6px; font-size: 15px; }
+      .portals-grid { grid-template-columns: 1fr; }
     }
 
   </style>

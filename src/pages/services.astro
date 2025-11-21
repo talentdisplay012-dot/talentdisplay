@@ -1,79 +1,207 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const serviceInfo = [
+  {
+    icon: "📄",
+    title: "Ndërtim CV Profesionale",
+    desc: "Krijo një CV unike që të dallohehesh në çdo aplikim.",
+    tips: [
+      "Mbaj CV-në të shkurtër dhe të qartë.",
+      "Përdor një stil modern dhe të lexueshëm.",
+      "Përshtat CV-në sipas pozicionit që aplikon.",
+      "Shfaq eksperiencat dhe aftësitë më të rëndësishme."
+    ],
+    help: "Përdor template tona ose kërko ndihmë nga ekipi ynë."
+  },
+  {
+    icon: "💼",
+    title: "Ndërtim Portfolio Modern",
+    desc: "Portofolio vizuale, për projekte personale ose akademike – perfekt për të rinj.",
+    tips: [
+      "Shto projekte, foto dhe arritje të veçanta.",
+      "Organizo portfolio-n sipas kategorive.",
+      "Përdor linke për prezantim online.",
+      "Tregu kreativitetin dhe personalitetin."
+    ],
+    help: "Na dërgo punimet ose përdor fletën interaktive si start."
+  },
+  {
+    icon: "🎯",
+    title: "Këshillim Karriere",
+    desc: "Zbuloni mundësi, rrugë të ndryshme karriere dhe merrni këshilla të personalizuara.",
+    tips: [
+      "Hulumto fushat që të interesojnë dhe tregun e punës.",
+      "Bëj listë arritjesh dhe objektivash afatshkurtra.",
+      "Kërko feedback nga mentorë.",
+      "Rivlerëso synimet çdo sezon."
+    ],
+    help: "Rezervo një takim online me këshilluesit tanë."
+  },
+  {
+    icon: "🤝",
+    title: "Lidhje me Punëdhënës",
+    desc: "Ju prezantojmë me kompani dhe oferta pune që përshtaten me profilin tuaj.",
+    tips: [
+      "Përditëso profilin dhe CV-në rregullisht.",
+      "Apliko direkt te ofertat që ju interesojnë.",
+      "Përgatituni për intervista.",
+      "Ndërto rrjetin profesional."
+    ],
+    help: "Shto CV-në/Portfolio-në dhe lidhu me oferta."
+  },
+  {
+    icon: "🗣️",
+    title: "Workshop për intervista",
+    desc: "Praktikoni teknikë intervistimi, merrni feedback, dhe fitoni vetbesim.",
+    tips: [
+      "Praktiko përgjigje të qarta për pyetje të zakonshme.",
+      "Mëso komunikimin verbal dhe jo-verbal.",
+      "Bëj prova me miq/mentorë.",
+      "Trego aftësitë me shembuj konkretë."
+    ],
+    help: "Workshop falas çdo javë, regjistrohu online!"
+  }
+];
+const contactMail = "talentdisplay012@gmail.com";
 ---
+
 <Layout title="Services - Talent Display">
   <section class="section">
-    <h1 class="title">Shërbimet Tona</h1>
-    <p class="subtitle">Shërbimet që Talent Display ofron për studentët.</p>
+    <h1 class="title">✨ Shërbimet Tona</h1>
+    <p class="subtitle">Kliko çdo shërbim për këshilla, ndihmë dhe kontakt të drejtpërdrejtë!</p>
+    <div class="services-grid">
+      {serviceInfo.map((s, idx) => (
+        <div 
+          class="service-card" 
+          tabindex="0"
+          onclick={`document.getElementById('modal-${idx}').showModal();`}
+          onkeydown={`if(event.key==='Enter'){document.getElementById('modal-${idx}').showModal();}`}
+        >
+          <span class="service-icon">{s.icon}</span>
+          <div class="service-text">
+            <div class="service-title">{s.title}</div>
+            <div class="service-desc">{s.desc}</div>
+          </div>
+        </div>
+      ))}
 
-    <ul class="services">
-      <li>Ndërtim CV Profesionale</li>
-      <li>Ndërtim Portfolio Modern</li>
-      <li>Këshillim Karriere</li>
-      <li>Lidhje me Punëdhënës</li>
-      <li>Workshop për intervista</li>
-    </ul>
+      {/* Contact card */}
+      <div 
+        class="service-card contact-card"
+        tabindex="0"
+        onclick={`document.getElementById('modal-contact').showModal();`}
+        onkeydown={`if(event.key==='Enter'){document.getElementById('modal-contact').showModal();}`}
+      >
+        <span class="service-icon">📬</span>
+        <div class="service-text">
+          <div class="service-title">Kontakto për më shumë ndihmë</div>
+          <div class="service-desc">Nëse ke pyetje, sugjerime, ose nevojë për suport shtesë.</div>
+          <div class="contact-email"><a href={`mailto:${contactMail}`}>{contactMail}</a></div>
+        </div>
+      </div>
+    </div>
+
+    {/* Modals for each service */}
+    {serviceInfo.map((s, idx) => (
+      <dialog class="service-modal" id={`modal-${idx}`} tabIndex="-1">
+        <button class="close-modal" onclick={`document.getElementById('modal-${idx}').close();`} title="Mbyll">×</button>
+        <div class="modal-icon">{s.icon}</div>
+        <div class="modal-title">{s.title}</div>
+        <div class="modal-desc">{s.desc}</div>
+        <ul class="modal-tips">
+          {s.tips.map(tip => (<li>{tip}</li>))}
+        </ul>
+        <div class="modal-help">{s.help}</div>
+      </dialog>
+    ))}
+    {/* Contact modal */}
+    <dialog class="service-modal" id="modal-contact" tabIndex="-1">
+      <button class="close-modal" onclick={`document.getElementById('modal-contact').close();`} title="Mbyll">×</button>
+      <div class="modal-icon">📬</div>
+      <div class="modal-title">Kontakto për ndihmë</div>
+      <div class="modal-desc">Për çdo pyetje, sugjerim, apo kërkesë, na shkruaj direkt:</div>
+      <div class="modal-contact-row">
+        <a href={`mailto:${contactMail}`}>{contactMail}</a>
+      </div>
+    </dialog>
   </section>
-
   <style>
     .section {
-      padding: 80px 20px;
+      padding: 80px 20px 50px 20px;
       text-align: center;
-      background: linear-gradient(to bottom, #eef4ff, #ffffff);
+      background: linear-gradient(to bottom, #eef4ff 60%, #fff 100%);
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 8px 36px rgba(30,60,240,0.06);
     }
-
-    .title {
-      font-size: 48px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #004bff, #3b82ff);
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: fadeDown 0.7s ease-out;
+    .title { font-size: 48px; font-weight: 900; margin-bottom: 12px; background: linear-gradient(90deg, #004bff 15%, #3b82ff 85%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 1px 30px rgba(21,82,247,0.09); animation: fadeDown 0.7s ease-out;line-height: 1.1;letter-spacing: -1px;}
+    .subtitle { font-size: 21px;opacity: 0.78;margin-bottom: 52px;animation: fadeUp 0.8s ease-out;max-width: 570px;margin-left:auto;margin-right:auto;line-height:1.6; }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap:32px; max-width:1100px; margin:0 auto;}
+    .service-card {
+      display: flex;align-items: flex-start;gap:18px;padding:28px 26px 24px 22px;
+      background: linear-gradient(110deg, #fff 78%, #eaf0ff 100%);
+      border-radius:16px;border:1.5px solid #e5e9ff;box-shadow:0 8px 26px rgba(40,65,130,0.07);
+      transition: box-shadow .24s, border-color .22s, transform .18s, background .22s;
+      cursor: pointer;text-align: left; min-height:120px;position:relative;outline: none;
     }
-
-    .subtitle {
-      font-size: 20px;
-      opacity: 0.7;
-      margin-bottom: 40px;
-      animation: fadeUp 0.8s ease-out;
+    .service-card:focus, .service-card:hover {
+      box-shadow: 0 16px 39px rgba(0,72,255,0.14);border-color:#3b82ff;
+      transform: translateY(-6px) scale(1.04);
+      background: linear-gradient(99deg,#eef7ff 60%,#eaf0ff 100%);
+      z-index:2;
     }
+    .service-icon {font-size:36px;color:#1552f7;min-width:44px;margin-right:6px;margin-top:3px;flex-shrink:0;filter:drop-shadow(0 2px 10px #e2ebff);transition:color .22s;}
+    .service-card:hover .service-icon { color:#3b82ff;}
+    .service-text { flex:1; display:flex;flex-direction:column;gap:7px;}
+    .service-title { font-size:20px;font-weight:700;color:#004bff;margin-bottom:3px;letter-spacing:-0.5px;}
+    .service-desc { font-size:17px;color:#34465b;opacity:0.82;font-weight:470;line-height:1.55;}
+    .contact-card { background: linear-gradient(110deg, #fcfcff 80%, #e6f5ff 100%);}
+    .contact-email { margin-top:14px;}
+    .contact-email a {color:#0d47ff;text-decoration:underline;font-weight:600;font-size:17px;}
 
-    .services {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 0;
-      list-style: none;
+    .service-modal {
+      border:none;border-radius:20px;box-shadow:0 30px 120px rgba(18,42,180,0.21);
+      min-width:320px;max-width:97vw;width:370px;padding:32px 22px 25px 22px;
+      background: linear-gradient(110deg,#f7faff 80%,#eaf0ff 100%);
+      text-align:center;animation:fadeInModal .3s;z-index:1100;position:fixed;
     }
-
-    .services li {
-      background: #ffffff;
-      margin: 14px 0;
-      padding: 18px 24px;
-      border-radius: 16px;
-      font-size: 20px;
-      font-weight: 500;
-      border: 1px solid #e5e9ff;
-      box-shadow: 0 6px 18px rgba(0, 60, 255, 0.08);
-      transition: 0.25s ease;
-      cursor: pointer;
+    @keyframes fadeInModal {from{opacity:0;transform:scale(.95);} to{opacity:1;transform:scale(1);}}
+    .close-modal {
+      position:absolute;top:14px;right:18px;font-size:28px;background:none;
+      border:none;color:#34465b;cursor:pointer;opacity:.70;font-weight:600;transition:opacity .18s;
     }
+    .close-modal:hover { opacity:1;}
+    .modal-icon { font-size:38px;margin-bottom:4px;}
+    .modal-title { font-size:22px;font-weight:800;color:#1552f7;margin-bottom:16px;margin-top:2px;}
+    .modal-desc { font-size:17px; color:#34465b; opacity:.86;margin-bottom:16px;}
+    .modal-tips { margin-bottom:11px; text-align:left; padding-left:15px; font-size:15px; color:#2556aa; }
+    .modal-tips li {margin-bottom:4px;}
+    .modal-help { font-size:16px;color:#34465b;opacity:.92;text-align:left;margin:0 auto 10px auto;}
+    .modal-contact-row { margin-top:14px; font-size:17px;}
+    .modal-contact-row a { color: #1040ee; text-decoration: underline; font-weight: 600; margin-left: 3px; }
 
-    .services li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 60, 255, 0.18);
-      border-color: #3b82ff;
+    @media(max-width:900px){
+      .services-grid { grid-template-columns: repeat(2,1fr); }
     }
-
-    /* Animations */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media(max-width:600px){
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding:18px 11px 16px 11px; font-size:15px;flex-direction:column;}
+      .service-icon { font-size:26px; }
     }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @media(max-width:760px){
+      .section { padding:40px 8px 35px 8px;}
+      .title { font-size:32px; }
+      .subtitle { font-size:16px;margin-bottom:28px;}
+      .service-modal { width:97vw; min-width:0; padding:19px 10px 18px 10px;}
+      .modal-title { font-size:17px;}
+      .modal-icon { font-size:28px;}
+      .modal-contact-row { font-size:15px;}
     }
   </style>
+  <script>
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape'){
+        document.querySelectorAll('.service-modal').forEach(d=>d.close());
+      }
+    });
+  </script>
 </Layout>
