@@ -1,6 +1,64 @@
 ---
 import { siteConfig } from "../config";
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+
+const professionalEducation = [
+  {
+    school: "Gjimnazi Kolin Gjoka - Lezhë",
+    field: "Gjimnaz",
+    year: "2025 - Në vazhdim",
+    description: "Programe të fokusuar në trajnim profesional praktik për studentë në Lezhë.",
+    courses: [
+      "Agroturizem",
+      "IT & Web Development",
+      "Menaxhim Biznesi",
+      "Turizem",
+      "Hoteleri"
+    ]
+  }
+];
+
+const trades = [
+  { name: "Berber", icon: "✂️" },
+  { name: "Hidraulik", icon: "🔧" },
+  { name: "Elektricist", icon: "⚡" },
+  { name: "Mekanik", icon: "🔩" }
+];
+
+const benefits = [
+  {
+    icon: "💰",
+    title: "Rritje e Ardhurash",
+    shortText: "Rritje e Ardhurash",
+    description: "Persona me arsim më të lartë fitojnë 80% më shumë gjatë jetës"
+  },
+  {
+    icon: "🎯",
+    title: "Mundësi të Punës",
+    shortText: "Mundësi të Punës",
+    description: "Më shumë pozicione të hapen për kandidat të kualifikuar"
+  },
+  {
+    icon: "🔒",
+    title: "Siguri Punësimi",
+    shortText: "Siguri Punësimi",
+    description: "Aftësi profesionale të njohura rrit stabilitetin e punës"
+  },
+  {
+    icon: "🌱",
+    title: "Zhvillim Personal",
+    shortText: "Zhvillim Personal",
+    description: "Edukimi rrit vetbesimin dhe zgjerojnë perspektivat"
+  },
+  {
+    icon: "🤝",
+    title: "Rrjet Profesional",
+    shortText: "Rrjet Profesional",
+    description: "Më shumë akses në rrjete profesionale dhe kolegë"
+  }
+];
+
+
 ---
 
 {
@@ -10,7 +68,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div class="lg:col-span-4">
             <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
-              Education
+              Edukimi
             </h2>
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
@@ -19,38 +77,93 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           </div>
 
           <div class="lg:col-span-8">
-            <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
-                <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
-                  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                    <div>
-                      <h3 class="text-lg sm:text-xl font-semibold text-gray-900">
-                        {edu.degree}
-                      </h3>
-                      <p
-                        class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
-                      >
-                        {edu.school}
-                      </p>
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-500 mt-2 sm:mt-0">
-                      {edu.dateRange}
-                    </span>
-                  </div>
+            {/* Importance Section */}
+            <div class="importance-box">
+              <h3 class="importance-title">Rëndësia e Edukimit</h3>
+              <p class="importance-text">
+                <strong>Edukimi</strong> është themeli i suksesit profesional dhe personal. 
+                Në një botë që ndryshon me shpejtësi, aftësitë dhe njohuritë e para janë më të rëndësishme se kurrë. 
+                Investimi në edukimin tuaj është investimi në të ardhmen tuaj.
+              </p>
+              <p class="importance-text">
+                Përmes edukimit formal dhe joforral, ju fitoni mjetet për të zgjidhur probleme, 
+                për të menduar kritikisht, dhe për të nxitur ndryshimin në komunitetin tuaj. 
+                Edukimi nuk është vetëm për të kaluar provimet — është për të zhvilluar karakterin, 
+                për të nxitur inovacionin, dhe për të hapur dyert e oportuniteteve të pafundme.
+              </p>
+            </div>
 
-                  <ul class="space-y-2">
-                    {edu.achievements.map((achievement) => (
-                      <li class="flex items-start">
-                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
-                        <span class="text-sm sm:text-base text-gray-600">
-                          {achievement}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            {/* Professional Education */}
+            <div class="professional-education mt-16">
+              <h3 class="professional-title">Edukimi Profesional</h3>
+              <div class="education-cards">
+                {professionalEducation.map((edu, index) => (
+                  <div class="education-card" key={index}>
+                    <div class="card-top">
+                      <div class="card-info">
+                        <h4 class="school-name">{edu.school}</h4>
+                        <p class="field-name" style={`color: ${siteConfig.accentColor}`}>
+                          {edu.field}
+                        </p>
+                      </div>
+                      <span class="year-badge">{edu.year}</span>
+                    </div>
+
+                    <p class="card-description">{edu.description}</p>
+
+                    <div class="courses-section">
+                      <h5 class="courses-title">Kurse & Programe:</h5>
+                      <div class="courses-list">
+                        {edu.courses.map((course, idx) => (
+                          <span class="course-tag" style={`animation-delay: ${idx * 0.1}s`}>
+                            {course}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Trades Section */}
+            <div class="trades-box mt-16">
+              <h3 class="trades-title">🛠️ Zanate & Aftësime Praktike</h3>
+              <p class="trades-description">
+                Përveç edukimit akademik, ka mundësi të mëdha në zanate dhe aftësime praktike 
+                që kërkojnë shumë në treg dhe ofrojnë të ardhura të mira.
+              </p>
+              <div class="trades-container">
+                {trades.map((trade, idx) => (
+                  <div class="trade-item" style={`animation-delay: ${idx * 0.15}s`}>
+                    <span class="trade-icon">{trade.icon}</span>
+                    <span class="trade-name">{trade.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Benefits Section - Interactive Hover Circles */}
+            <div class="benefits-box mt-16">
+              <h4 class="benefits-title">🎯 Përfitimet e Edukimit Profesional</h4>
+              <div class="benefits-circles-container">
+                {benefits.map((benefit, idx) => (
+                  <div 
+                    class="benefit-circle-wrapper" 
+                    style={`animation-delay: ${idx * 0.1}s`}
+                  >
+                    <div class="benefit-circle">
+                      <div class="circle-content">
+                        <span class="circle-icon">{benefit.icon}</span>
+                        <span class="circle-short-text">{benefit.shortText}</span>
+                      </div>
+                      <div class="circle-hover-content">
+                        <p class="circle-description">{benefit.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -58,3 +171,405 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
     </section>
   )
 }
+
+<style>
+  /* Importance Box */
+  .importance-box {
+    background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    border: 1.5px solid #e5e9ff;
+    border-radius: 16px;
+    padding: 32px;
+    animation: slideIn 0.6s ease-out;
+    box-shadow: 0 4px 16px rgba(13, 71, 255, 0.08);
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .importance-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin: 0 0 16px 0;
+  }
+
+  .importance-text {
+    font-size: 16px;
+    color: #34465b;
+    line-height: 1.8;
+    margin: 0 0 16px 0;
+  }
+
+  .importance-text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Professional Education */
+  .professional-education {
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .professional-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin-bottom: 24px;
+  }
+
+  .education-cards {
+    display: grid;
+    gap: 20px;
+  }
+
+  .education-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f9faff 100%);
+    border: 1.5px solid #e5e9ff;
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(13, 71, 255, 0.06);
+    animation: cardSlideIn 0.6s ease-out;
+  }
+
+  @keyframes cardSlideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .education-card:hover {
+    box-shadow: 0 8px 24px rgba(13, 71, 255, 0.15);
+    border-color: #3b82ff;
+    transform: translateY(-4px);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-info {
+    flex: 1;
+  }
+
+  .school-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin: 0;
+  }
+
+  .field-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 6px 0 0 0;
+  }
+
+  .year-badge {
+    background: linear-gradient(135deg, #0d47ff, #3b82ff);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .card-description {
+    font-size: 15px;
+    color: #34465b;
+    margin: 0 0 18px 0;
+    line-height: 1.6;
+  }
+
+  .courses-section {
+    margin-bottom: 0;
+  }
+
+  .courses-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d47ff;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .course-tag {
+    background: rgba(13, 71, 255, 0.1);
+    color: #0d47ff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+    animation: tagSlideIn 0.4s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes tagSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .course-tag:hover {
+    background: rgba(13, 71, 255, 0.2);
+    transform: scale(1.05);
+  }
+
+  /* Trades Section */
+  .trades-box {
+    background: linear-gradient(135deg, #f9f5ff 0%, #f0e6ff 100%);
+    border: 1.5px solid #e9e0ff;
+    border-radius: 16px;
+    padding: 32px;
+    animation: fadeInUp 0.7s ease-out 0.4s both;
+  }
+
+  .trades-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin: 0 0 12px 0;
+  }
+
+  .trades-description {
+    font-size: 15px;
+    color: #34465b;
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+  }
+
+  .trades-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+  }
+
+  .trade-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f0ff 100%);
+    border: 1.5px solid #e9e0ff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(13, 71, 255, 0.05);
+    animation: tradeItemSlide 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes tradeItemSlide {
+    from {
+      opacity: 0;
+      transform: translateY(15px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .trade-item:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(13, 71, 255, 0.12);
+    border-color: #3b82ff;
+    background: linear-gradient(135deg, #eef7ff 0%, #f5f0ff 100%);
+  }
+
+  .trade-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .trade-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0d1a2d;
+  }
+
+  /* Benefits Section - Interactive Hover Circles */
+  .benefits-box {
+  background: linear-gradient(135deg, #f4f0ff 0%, #f7e6ff 100%);
+  border: 1.5px solid #e6e0fc;
+  border-radius: 16px;
+  padding: 32px;
+  animation: fadeInUp 0.7s ease-out 0.6s both;
+}
+
+
+  .benefits-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0d1a2d;
+    margin: 0 0 32px 0;
+    text-align: center;
+  }
+
+  .benefits-circles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 24px;
+    justify-items: center;
+  }
+
+  .benefit-circle-wrapper {
+    animation: circleFloat 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes circleFloat {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .benefit-circle {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+    border: 2px solid #e5e9ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(13, 71, 255, 0.1);
+  }
+
+  .benefit-circle:hover {
+    transform: scale(1.15) translateY(-8px);
+    box-shadow: 0 12px 32px rgba(13, 71, 255, 0.25);
+    border-color: #3b82ff;
+    background: linear-gradient(135deg, #eef7ff 0%, #e0f2ff 100%);
+  }
+
+  .circle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    transition: opacity 0.3s ease;
+  }
+
+  .benefit-circle:hover .circle-content {
+    opacity: 0;
+  }
+
+  .circle-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .circle-short-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0d1a2d;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .circle-hover-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .benefit-circle:hover .circle-hover-content {
+    opacity: 1;
+  }
+
+  .circle-description {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0d47ff;
+    text-align: center;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .benefits-circles-container {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .benefit-circle {
+      width: 120px;
+      height: 120px;
+    }
+
+    .circle-icon {
+      font-size: 28px;
+    }
+
+    .circle-short-text {
+      font-size: 11px;
+    }
+
+    .circle-description {
+      font-size: 10px;
+      padding: 16px;
+    }
+  }
+</style>
